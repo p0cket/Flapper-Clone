@@ -11,7 +11,14 @@ function($scope){
 {title: 'post 4', upvotes: 9},
 {title: 'post 5', upvotes: 4}
 ];
+
+// figure out why this goes within $scope as oposed to outside this function
 $scope.addPost = function(){
-  $scope.posts.push({title: 'A new post!', upvotes: 0});
+  //don't let them make an empty post
+  if(!$scope.title || $scope.title === '') { return; }
+  //we take the post text from $scope.title, which we then clear
+  $scope.posts.push({title: $scope.title, upvotes: 0});
+  $scope.title = '';
 };
+
 }]);
