@@ -25,6 +25,7 @@
         <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(post)">
         </span> {{post.upvotes}}
         <span style="font-size:20px; margin-left:10px;">
+          <!-- it has issues with http for some reason -->
           <a ng-show="post.link" href="{{post.link}}">
             {{post.title}}
           </a>

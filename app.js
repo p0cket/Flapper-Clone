@@ -1,17 +1,26 @@
 angular.module('flapperNews', [])
+.factory('posts', [function(){
+  var o = {
+    posts: []
+  };
+  return o;
+}])
+
 .controller('MainCtrl', [
 '$scope',
-function($scope){
+'posts',
+function($scope, posts){
 
-  $scope.posts = [
-{title: 'post 1', upvotes: 5},
-{title: 'post 2', upvotes: 2},
-{title: 'post 3', upvotes: 15},
-{title: 'post 4', upvotes: 9},
-{title: 'post 5', upvotes: 4}
-];
+$scope.test = "hello world";
+$scope.posts = posts.posts;
+//   $scope.posts = [
+// {title: 'post 1', upvotes: 5},
+// {title: 'post 2', upvotes: 2},
+// {title: 'post 3', upvotes: 15},
+// {title: 'post 4', upvotes: 9},
+// {title: 'post 5', upvotes: 4}
+// ];
 // figure out why this goes within $scope as oposed to outside this function
-
 $scope.addPost = function(){
   //don't let them make an empty post
   if(!$scope.title || $scope.title === '') { return; }
@@ -28,6 +37,4 @@ $scope.addPost = function(){
 $scope.incrementUpvotes = function(post) {
   post.upvotes += 1;
 };
-
-
 }]);
