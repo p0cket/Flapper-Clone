@@ -1,21 +1,14 @@
 angular.module('flapperNews', [])
 .controller('MainCtrl', [
 '$scope',
-
-$scope.addPost = function(){
-  $scope.posts.push({title: 'A new post!', upvotes: 0});
-};
-
-
 function($scope){
-
   $scope.test = 'Hello world!';
-  $scope.posts = [
-  {title: 'post 1', upvotes: 5},
-  {title: 'post 2', upvotes: 2},
-  {title: 'post 3', upvotes: 15},
-  {title: 'post 4', upvotes: 9},
-  {title: 'post 5', upvotes: 4}
-  ];
 
+  $scope.posts = [
+  'post 1',
+  'post 2',
+  'post 3',
+  'post 4',
+  'post 5'
+  ];
 }]);

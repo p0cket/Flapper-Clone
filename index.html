@@ -5,12 +5,11 @@
     <script src="app.js"></script>
   </head>
   <body ng-app="flapperNews" ng-controller="MainCtrl">
-    <div ng-repeat="post in posts | orderBy: '-upvotes'">
-      {{post.title}} - upvotes: {{post.upvotes}}
+    <div ng-repeat="post in posts">
+      {{post}}
     </div>
     <div>
       {{test}}
     </div>
-    <button ng-click="addPost()">Post</button>
   </body>
 </html>
