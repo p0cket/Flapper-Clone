@@ -27,6 +27,14 @@ angular.module('flapperNews', ['ui.router'])
   return o;
 }])
 
+.controller('PostsCtrl', [
+'$scope',
+'$stateParams',
+'posts',
+function($scope, $stateParams, posts){
+
+}])
+
 .controller('MainCtrl', [
 '$scope',
 'posts',
@@ -43,6 +51,18 @@ $scope.posts = posts.posts;
 // ];
 // figure out why this goes within $scope as oposed to outside this function
 $scope.addPost = function(){
+
+  //add some fake data
+  $scope.posts.push({
+    title: $scope.title,
+    link: $scope.link,
+    upvotes: 0,
+    comments: [
+  {author: 'Joe', body: 'Cool post!', upvotes: 0},
+  {author: 'Bob', body: 'Great idea but everything is wrong!', upvotes: 0}
+  ]
+  });
+
   //don't let them make an empty post
   if(!$scope.title || $scope.title === '') { return; }
   $scope.posts.push({
