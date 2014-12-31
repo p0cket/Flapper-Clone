@@ -3,8 +3,7 @@ angular.module('flapperNews', ['ui.router'])
 .config([
   '$stateProvider',
   '$urlRouterProvider',
-  function($stateProvider, $urlRouterProvider) {
-
+  function($stateProvider, $urlRouterProvider, po) {
     $stateProvider
     .state('home', {
       url: '/home',
@@ -12,14 +11,29 @@ angular.module('flapperNews', ['ui.router'])
       controller: 'MainCtrl'
     });
 
-    $urlRouterProvider.otherwise('home');
+    $urlRouterProvider.otherwise('home')
+
+    .state('posts', {
+      url: '/posts/{id}',
+      templateUrl: '/posts.html',
+      controller: 'PostsCtrl'
+    });
+
   }])
-  
+
 .factory('posts', [function(){
   var o = {
     posts: []
   };
   return o;
+}])
+
+.controller('PostsCtrl', [
+'$scope',
+'$stateParams',
+'posts',
+function($scope, $stateParams, posts){
+$scope.post = posts.posts[$stateParams.id];
 }])
 
 .controller('MainCtrl', [
@@ -48,6 +62,18 @@ $scope.addPost = function(){
   //we take the post text from $scope.title and $scope.link, which we then clear
   $scope.title = '';
   $scope.link = '';
+
+  // fake data for testing
+  $scope.posts.push({
+    title: $scope.title,
+    link: $scope.link,
+    upvotes: 0,
+    comments: [
+      {author: 'Joe', body: 'Cool post!', upvotes: 0},
+      {author: 'Bob', body: 'Great idea but everything is wrong!', upvotes: 0}
+    ]
+  });
+
 };
 
 $scope.incrementUpvotes = function(post) {
