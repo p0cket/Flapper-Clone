@@ -50,6 +50,17 @@ $scope.posts = posts.posts;
 // {title: 'post 5', upvotes: 4}
 // ];
 // figure out why this goes within $scope as oposed to outside this function
+
+$scope.addComment = function(){
+  if($scope.body === '') { return; }
+  $scope.post.comments.push({
+    body: $scope.body,
+    author: 'user',
+    upvotes: 0
+  });
+  $scope.body = '';
+};
+
 $scope.addPost = function(){
 
   //add some fake data
